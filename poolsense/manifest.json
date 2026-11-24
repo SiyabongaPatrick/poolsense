@@ -1,0 +1,3 @@
+{"name":"PoolSense","short_name":"PoolSense","start_url":"./index.html","scope":"./","display":"standalone",
+"background_color":"#10151a","theme_color":"#1f7a3d",
+"icons":[{"src":"assets/icons/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any"}]}
