@@ -1,0 +1,10 @@
+const assert=require('assert'),G=require('../js/geometry'),R=G.TABLE.R,near=(a,b,e=1e-6)=>assert(Math.abs(a-b)<e,a+' vs '+b);
+const gb=G.ghostBall({x:1000,y:600},{x:2540,y:600},R);near(gb.x,1000-2*R);near(gb.y,600);
+near(G.cutAngle({x:200,y:600},{x:1000,y:600},{x:2540,y:600},R),0);
+assert(G.cutAngle({x:200,y:800},{x:1000,y:600},{x:2540,y:600},R)>5);
+const b=G.bankShot({x:500,y:400},{x:1500,y:400},'top',G.TABLE);near(b.contact.x,1000);near(b.contact.y,R);
+near(G.rayCircle({x:0,y:0},{x:1,y:0},{x:10,y:0},1),9);assert.strictEqual(G.rayCircle({x:0,y:0},{x:1,y:0},{x:10,y:5},1),null);
+const gh={x:100,y:0},n={x:Math.cos(.5),y:Math.sin(.5)},tg=G.add(gh,G.mul(n,2*R)),t=G.cueTangent({x:0,y:0},gh,tg);near(G.dot(t,n),0);
+assert.strictEqual(G.cueTangent({x:0,y:0},gh,{x:gh.x+2*R,y:0}),null);
+assert(G.blocker({x:0,y:0},{x:500,y:0},[{id:1,x:250,y:20}],[],R));assert(!G.blocker({x:0,y:0},{x:500,y:0},[{id:1,x:250,y:100}],[],R));
+console.log('geometry ok');
